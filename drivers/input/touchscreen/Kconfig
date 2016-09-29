@@ -506,6 +506,10 @@ config GT9XX_HOTKNOT_FLASHLESS
         bool "GT9XX_HOTKNOT for Mediatek package"
         default n
 
+config TOUCHSCREEN_MTK_FT6206_X2605
+	bool "FT6206_X2605 for Mediatek package"
+	depends on TOUCHSCREEN_MTK
+
 config MTK_FT5406
         bool "FT5406 for Mediatek package"
         default n
