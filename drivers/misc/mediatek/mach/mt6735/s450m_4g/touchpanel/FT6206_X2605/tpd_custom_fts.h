@@ -83,16 +83,15 @@ HD    1280x720    2key ( (120,1350);(600,1350) )           3key  ( (120,1350);(3
 FHD   1920x1080  2key ( (160,2100);(920,2100) )           3key  ( (160,2100);(540,2100);(920,2100) )          4key   ( (160,2100);(320;1080);(600,1080);(920,2100)  )
 */
 #define TPD_HAVE_BUTTON	// if have virtual key,need define the MACRO
-#define TPD_BUTTON_HEIGH        (40)  //100
+#define TPD_BUTTON_HEIGH        (100)
 
-#define TPD_KEY_COUNT           4
-#define TPD_KEYS                { KEY_MENU, KEY_BACK, KEY_SEARCH, KEY_HOMEPAGE }
+#define TPD_KEY_COUNT           3
+#define TPD_KEYS                { KEY_MENU, KEY_HOMEPAGE, KEY_BACK}
 
 #define TPD_KEYS_DIM            {\
-	{160,	2000,	60,	TPD_BUTTON_HEIGH},\
-	{950,	2000,	60,	TPD_BUTTON_HEIGH},\
-	{200,	2000,	60,	TPD_BUTTON_HEIGH},\
-	{540,	2000,	60,	TPD_BUTTON_HEIGH}\
+	{80,	900,	120,	TPD_BUTTON_HEIGH},\
+	{240,	900,	120,	TPD_BUTTON_HEIGH},\
+	{400,	900,	120,	TPD_BUTTON_HEIGH}\
 }
 /*********************Custom Define end*************************************************/
 
@@ -125,8 +124,8 @@ FHD   1920x1080  2key ( (160,2100);(920,2100) )           3key  ( (160,2100);(54
 
 
 #define TPD_DELAY                		(2*HZ/100)
-#define TPD_RES_X                		720
-#define TPD_RES_Y                		1280
+#define TPD_RES_X                		480
+#define TPD_RES_Y                		854
 //#define TPD_CALIBRATION_MATRIX  		{962,0,0,0,1600,0,0,0};
 
 //#define TPD_HAVE_CALIBRATION

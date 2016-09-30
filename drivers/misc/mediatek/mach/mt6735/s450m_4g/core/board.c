@@ -1038,7 +1038,7 @@ EXPORT_SYMBOL(mt_wifi_power_off);
         .ett_count            = 0, //should be same with ett_settings array size
         .host_function        = MSDC_SD,
         .boot	                = 0,
-        .cd_level             = MSDC_CD_HIGH,
+        .cd_level             = MSDC_CD_LOW,
     };
   #endif
 #endif
@@ -1082,7 +1082,7 @@ EXPORT_SYMBOL(mt_wifi_power_off);
         .ett_count            = 0, //should be same with ett_settings array size
         .host_function        = MSDC_SD,
         .boot	                = 0,
-        .cd_level             = MSDC_CD_HIGH,
+        .cd_level             = MSDC_CD_LOW,
     };
 #endif
 
@@ -1154,7 +1154,7 @@ EXPORT_SYMBOL(mt_wifi_power_off);
         .ett_count            = 0, //should be same with ett_settings array size
         .host_function        = MSDC_SD,
         .boot	                = 0,
-        .cd_level             = MSDC_CD_HIGH,
+        .cd_level             = MSDC_CD_LOW,
 };
 #endif
 #endif
