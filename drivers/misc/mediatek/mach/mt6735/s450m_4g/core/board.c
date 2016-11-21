@@ -1160,41 +1160,45 @@ EXPORT_SYMBOL(mt_wifi_power_off);
 #endif
 
 #if defined(CFG_DEV_MSDC3)
-#if defined(CONFIG_EVDO_DT_SUPPORT)
+#if defined(CONFIG_MTK_WCN_CMB_SDIO_SLOT) && (CONFIG_MTK_WCN_CMB_SDIO_SLOT == 3)
+    /* MSDC3 settings for MT66xx combo connectivity chip */
     struct msdc_hw msdc3_hw = {
-        .clk_src              = MSDC30_CLKSRC_200MHZ,
-        .cmd_edge             = MSDC_SMPL_RISING,
-        .rdata_edge           = MSDC_SMPL_RISING,
-        .wdata_edge           = MSDC_SMPL_RISING,
-        .clk_drv              = 0,
-        .cmd_drv              = 0,
-        .dat_drv              = 0,
-        .data_pins            = 4,
-        .data_offset          = 0,
-        .flags                = MSDC_SDIO_IRQ | MSDC_HIGHSPEED,  
-        .dat0rddly	          = 0,
-        .dat1rddly	          = 0,
-        .dat2rddly	          = 0,
-        .dat3rddly	          = 0,
-        .dat4rddly	          = 0,
-        .dat5rddly	          = 0,
-        .dat6rddly	          = 0,
-        .dat7rddly	          = 0,
-        .datwrddly	          = 0,
-        .cmdrrddly	          = 0,
-        .cmdrddly                 = 0,
-        .cmdrtactr_sdr50        = 0x0,
-        .wdatcrctactr_sdr50     = 0x0,
+        .clk_src        = MSDC30_CLKSRC_200MHZ,
+        .cmd_edge       = MSDC_SMPL_FALLING,
+        .rdata_edge     = MSDC_SMPL_FALLING,
+        .wdata_edge     = MSDC_SMPL_FALLING,
+        .clk_drv        = 1,
+        .cmd_drv        = 1,
+        .dat_drv        = 1,
+        .data_pins      = 4,
+        .data_offset    = 0,
+        //MT6620 use External IRQ, wifi uses high speed. here wifi manage his own suspend and resume, does not support hot plug
+        .flags          = MSDC_SDIO_FLAG,//MSDC_SYS_SUSPEND | MSDC_WP_PIN_EN | MSDC_CD_PIN_EN | MSDC_REMOVABLE,
+        .dat0rddly      = 0,
+        .dat1rddly      = 0,
+        .dat2rddly      = 0,
+        .dat3rddly      = 0,
+        .dat4rddly      = 0,
+        .dat5rddly      = 0,
+        .dat6rddly      = 0,
+        .dat7rddly      = 0,
+        .datwrddly      = 0,
+        .cmdrrddly      = 0,
+        .cmdrddly       = 0,
+        .cmdrtactr_sdr50        = 0x1,
+        .wdatcrctactr_sdr50     = 0x1,
         .intdatlatcksel_sdr50   = 0x0,
-        .cmdrtactr_sdr200       = 0x0,
-        .wdatcrctactr_sdr200    = 0x0,
+        .cmdrtactr_sdr200       = 0x3,
+        .wdatcrctactr_sdr200    = 0x3,
         .intdatlatcksel_sdr200  = 0x0,
         .ett_count              = 0, //should be same with ett_settings array size
-        .host_function          = MSDC_SDIO,
-        .boot	                = 0,
-        //FIXME: Please C2K owner specify register_pm
-        //.register_pm            = FIXME,
-};
+        .host_function	= MSDC_SDIO,
+        .boot      	    = 0,
+        .request_sdio_eirq = mtk_wcn_cmb_sdio_request_eirq,
+        .enable_sdio_eirq  = mtk_wcn_cmb_sdio_enable_eirq,
+        .disable_sdio_eirq = mtk_wcn_cmb_sdio_disable_eirq,
+        .register_pm       = mtk_wcn_cmb_sdio_register_pm,
+	};
 #endif
 #endif
 

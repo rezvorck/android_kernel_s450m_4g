@@ -1,5 +1,6 @@
 #ifndef _KD_CAMERA_HW_H_
 #define _KD_CAMERA_HW_H_
+ 
 
 #include <mach/mt_gpio.h>
 
@@ -11,11 +12,11 @@
 #include "pmic_drv.h"
 
 //
-//Analog
+//Analog 
 #define CAMERA_POWER_VCAM_A         PMIC_APP_MAIN_CAMERA_POWER_A
-//Digital
+//Digital 
 #define CAMERA_POWER_VCAM_D         PMIC_APP_MAIN_CAMERA_POWER_D
-//AF
+//AF 
 #define CAMERA_POWER_VCAM_AF        PMIC_APP_MAIN_CAMERA_POWER_AF
 //digital io
 #define CAMERA_POWER_VCAM_IO        PMIC_APP_MAIN_CAMERA_POWER_IO
@@ -23,24 +24,26 @@
 #define SUB_CAMERA_POWER_VCAM_D     PMIC_APP_SUB_CAMERA_POWER_D
 
 
-//FIXME, should defined in DCT tool
+//FIXME, should defined in DCT tool 
 
 //Main sensor
-#define CAMERA_CMRST_PIN            GPIO_CAMERA_CMRST_PIN
-#define CAMERA_CMRST_PIN_M_GPIO     GPIO_CAMERA_CMRST_PIN_M_GPIO
+    // Common phone's reset pin uses extension GPIO10 of mt6306
+    #define CAMERA_CMRST_PIN            GPIO_CAMERA_CMRST_PIN 
+    #define CAMERA_CMRST_PIN_M_GPIO     GPIO_CAMERA_CMRST_PIN_M_GPIO
 
-#define CAMERA_CMPDN_PIN            GPIO_CAMERA_CMPDN_PIN
-#define CAMERA_CMPDN_PIN_M_GPIO     GPIO_CAMERA_CMPDN_PIN_M_GPIO
 
+#define CAMERA_CMPDN_PIN            GPIO_CAMERA_CMPDN_PIN    
+#define CAMERA_CMPDN_PIN_M_GPIO     GPIO_CAMERA_CMPDN_PIN_M_GPIO 
+ 
 //FRONT sensor
-#define CAMERA_CMRST1_PIN           GPIO_CAMERA_CMRST1_PIN
-#define CAMERA_CMRST1_PIN_M_GPIO    GPIO_CAMERA_CMRST1_PIN_M_GPIO
+#define CAMERA_CMRST1_PIN           GPIO_CAMERA_CMRST1_PIN 
+#define CAMERA_CMRST1_PIN_M_GPIO    GPIO_CAMERA_CMRST1_PIN_M_GPIO 
 
-#define CAMERA_CMPDN1_PIN           GPIO_CAMERA_CMPDN1_PIN
-#define CAMERA_CMPDN1_PIN_M_GPIO    GPIO_CAMERA_CMPDN1_PIN_M_GPIO
+#define CAMERA_CMPDN1_PIN           GPIO_CAMERA_CMPDN1_PIN 
+#define CAMERA_CMPDN1_PIN_M_GPIO    GPIO_CAMERA_CMPDN1_PIN_M_GPIO 
 
 // Define I2C Bus Num
 #define SUPPORT_I2C_BUS_NUM1        0
 #define SUPPORT_I2C_BUS_NUM2        0
 
-#endif
+#endif 
