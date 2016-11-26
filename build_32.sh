@@ -3,6 +3,7 @@
 export KBUILD_BUILD_USER=rezvorck
 export KBUILD_BUILD_HOST=ubuntu
 export CONFIG_DEBUG_SECTION_MISMATCH=y
+export GCC_VERSION="gcc version 5.2.1 20151005 (linaro) (GCC)"
 
 run=$(date +%s)
 
