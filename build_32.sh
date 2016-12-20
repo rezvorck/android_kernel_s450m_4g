@@ -1,9 +1,9 @@
 #!/bin/bash
 
 export KBUILD_BUILD_USER=rezvorck
-export KBUILD_BUILD_HOST=ubuntu
+export KBUILD_BUILD_HOST=debian
 export CONFIG_DEBUG_SECTION_MISMATCH=y
-export GCC_VERSION="gcc version 5.2.1 20151005 (linaro) (GCC)"
+export GCC_VERSION="gcc version 5.3.1 20160412 (linaro) (GCC)"
 
 run=$(date +%s)
 
@@ -14,7 +14,7 @@ then
 fi
 
 echo "Export toolchains..."
-export ARCH=arm CROSS_COMPILE=../*5.2*/bin/arm-cortex-linux-gnueabi-
+export ARCH=arm CROSS_COMPILE=../linaro-5.3.1_arm/bin/arm-linux-gnueabi-
 
 echo "Make defconfig..."
 make s450m_4g_defconfig >/dev/null

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export KBUILD_BUILD_USER=rezvorck
-export KBUILD_BUILD_HOST=ubuntu
+export KBUILD_BUILD_HOST=debian
 export CONFIG_DEBUG_SECTION_MISMATCH=y
 export GCC_VERSION="gcc version 5.3.1 20160412 (linaro) (GCC)"
 
@@ -14,7 +14,7 @@ then
 fi
 
 echo "Export toolchains..."
-export ARCH=arm64 CROSS_COMPILE=../*5.3.1*/bin/aarch64-linux-gnu-
+export ARCH=arm64 CROSS_COMPILE=../linaro-5.3.1_arm64/bin/aarch64-linux-gnu-
 
 echo "Make defconfig..."
 make s450m_4g_64_defconfig >/dev/null

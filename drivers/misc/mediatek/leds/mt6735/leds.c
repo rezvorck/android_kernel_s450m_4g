@@ -56,6 +56,8 @@ static int last_level = 1;
 #endif
 struct wake_lock leds_suspend_lock;
 
+struct nled_setting nled_tmp_setting = {0,0,0};
+
 /****************************************************************************
  * DEBUG MACROS
  ***************************************************************************/
@@ -335,8 +337,7 @@ int mt_led_blink_pmic(enum mt65xx_led_pmic pmic_type, struct nled_setting *led)
 	int duty = 0;
 	LEDS_DEBUG("[LED]led_blink_pmic: pmic_type=%d\n", pmic_type);  
 	
-	if((pmic_type != MT65XX_LED_PMIC_NLED_ISINK0 && pmic_type!= MT65XX_LED_PMIC_NLED_ISINK1) || 
-		led->nled_mode != NLED_BLINK) {
+	if(pmic_type != MT65XX_LED_PMIC_NLED_ISINK0 && pmic_type!= MT65XX_LED_PMIC_NLED_ISINK1) {
 		return -1;
 	}
 				
@@ -780,7 +781,6 @@ int  mt_mt65xx_blink_set(struct led_classdev *led_cdev,
 	struct mt65xx_led_data *led_data =
 		container_of(led_cdev, struct mt65xx_led_data, cdev);
 	static int got_wake_lock = 0;
-	struct nled_setting nled_tmp_setting = {0,0,0};
 
 	// only allow software blink when delay_on or delay_off changed
 	if (*delay_on != led_data->delay_on || *delay_off != led_data->delay_off) {

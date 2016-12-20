@@ -38,7 +38,7 @@
 #include <linux/i2c.h>
 #include <linux/leds.h>
 
-
+#include "../../../../leds/mt6735/leds_hal.h"
 
 /******************************************************************************
  * Debug configuration
@@ -111,6 +111,7 @@ int FL_Enable(void)
 {
 
 #define FLASH_GPIO (80)
+mt_led_blink_pmic(1, &nled_tmp_setting);
 mt_set_gpio_mode(FLASH_GPIO, 0);
 mt_set_gpio_dir(FLASH_GPIO, GPIO_DIR_OUT);
 mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ONE);
@@ -143,6 +144,7 @@ mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ONE);
 
 int FL_Disable(void)
 {
+mt_brightness_set_pmic(1, 0, 0);
 mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ZERO);
 /*
 #if defined(CONFIG_HCT_LED_SGM3785)
