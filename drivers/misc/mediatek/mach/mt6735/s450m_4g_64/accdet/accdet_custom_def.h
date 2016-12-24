@@ -8,7 +8,7 @@ typedef enum
 #define ACCDET_MIC_MODE	(2)
 
 // use accdet + EINT solution
-//#define ACCDET_EINT   //ACC mode
+#define ACCDET_EINT   //ACC mode
 #ifndef ACCDET_EINT
 #define ACCDET_EINT_IRQ  //DCC mode
 #endif
