@@ -104,7 +104,7 @@
 #define MC3XXX_INIT_SUCC    (0)
 #define MC3XXX_INIT_FAIL    (-1)
 #define MC3XXX_REGMAP_LENGTH    (64)
-#define DEBUG_SWITCH        1
+#define DEBUG_SWITCH        0
 #define C_I2C_FIFO_SIZE     8
 
 /**************************

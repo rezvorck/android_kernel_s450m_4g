@@ -24,7 +24,7 @@
 #include <linux/dma-mapping.h>
 
 //#define MT_PROTOCOL_B
-//#define TPD_PROXIMITY
+#define TPD_PROXIMITY
 
 #define FTS_CTL_IIC
 #define SYSFS_DEBUG
@@ -1236,7 +1236,7 @@ static int fts_read_Gestruedata(void)
 		 tpd_flag = 0;
 			 
 		 set_current_state(TASK_RUNNING);
-#if 0
+
 	 	 #ifdef FTS_GESTRUE
 			i2c_smbus_read_i2c_block_data(i2c_client, 0xd0, 1, &state);
 			//printk("tpd fts_read_Gestruedata state=%d\n",state);
@@ -1296,7 +1296,7 @@ static int fts_read_Gestruedata(void)
 				fts_report_value(&pevent);
 		}
 		#else
-#endif
+
 #endif
 		{
 			if (tpd_touchinfo(&cinfo, &pinfo)) 
