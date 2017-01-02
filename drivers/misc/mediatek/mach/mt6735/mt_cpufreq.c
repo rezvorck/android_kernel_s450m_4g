@@ -255,20 +255,11 @@ enum turbo_mode {
 #undef TAG
 #define TAG     "[Power/cpufreq] "
 
-#define cpufreq_err(fmt, args...)       \
-    pr_err(TAG KERN_CONT "[ERROR]"fmt, ##args)
-#define cpufreq_warn(fmt, args...)      \
-    pr_warn(TAG KERN_CONT "[WARNING]"fmt, ##args)
-#define cpufreq_info(fmt, args...)      \
-    pr_notice(TAG KERN_CONT fmt, ##args)
-// TODO: replace with pr_debug()?
-#define cpufreq_dbg(fmt, args...)       \
-    pr_info(TAG KERN_CONT fmt, ##args)
-#define cpufreq_ver(fmt, args...)       \
-    do {                                \
-        if (func_lv_mask)               \
-            pr_info(TAG KERN_CONT fmt, ##args);    \
-    } while (0)
+#define cpufreq_err(fmt, args...)
+#define cpufreq_warn(fmt, args...)
+#define cpufreq_info(fmt, args...)
+#define cpufreq_dbg(fmt, args...)
+#define cpufreq_ver(fmt, args...)
 
 #define FUNC_LV_MODULE         BIT(0)  /* module, platform driver interface */
 #define FUNC_LV_CPUFREQ        BIT(1)  /* cpufreq driver interface          */

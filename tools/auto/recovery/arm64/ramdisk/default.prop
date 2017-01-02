@@ -1,0 +1,31 @@
+#
+# ADDITIONAL_DEFAULT_PROPERTIES
+#
+ro.adb.secure=0
+ro.secure=1
+ro.allow.mock.location=0
+ro.debuggable=1
+ro.zygote=zygote64_32
+dalvik.vm.dex2oat-Xms=64m
+dalvik.vm.dex2oat-Xmx=512m
+dalvik.vm.image-dex2oat-Xms=64m
+dalvik.vm.image-dex2oat-Xmx=64m
+ro.dalvik.vm.native.bridge=0
+persist.sys.usb.config=adb
+
+#
+# DEVICE_INFORMATION
+#
+ro.product.cpu.abi=arm64-v8a
+ro.product.cpu.abilist=arm64-v8a,armeabi-v7a,armeabi
+ro.product.cpu.abilist32=armeabi-v7a,armeabi
+ro.product.cpu.abilist64=arm64-v8a
+ro.board.platform=mt6735m
+ro.product.board=4Good
+ro.product.brand=4Good
+ro.product.manufacturer=4Good
+ro.product.model=4Good S450m 4G
+ro.product.name=4Good S450m 4G
+ro.product.device=4Good S450m 4G
+ro.build.product=4Good S450m 4G
+ro.usb.storage.name=4Good S450m 4G

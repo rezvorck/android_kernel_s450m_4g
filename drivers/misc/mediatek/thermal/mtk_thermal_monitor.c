@@ -133,29 +133,9 @@ static struct delayed_work _mtm_sysinfo_poll_queue;
 /* ************************************ */
 /* Macro */
 /* ************************************ */
-#ifdef CONFIG_MTK_MT_LOGGER
-#define THRML_STORAGE_LOG(msg_id, func_name, ...) \
-    do { \
-	if (unlikely(is_dump_mthermal()) && enable_ThermalMonitor) { \
-	    AddThrmlTrace(msg_id, func_name, __VA_ARGS__); \
-	} \
-    } while (0)
-#else
 #define THRML_STORAGE_LOG(msg_id, func_name, ...)
-#endif
-
-#define THRML_LOG(fmt, args...) \
-    do { \
-	if (unlikely(enable_ThermalMonitorXlog)) { \
-	    pr_debug("THERMAL/MONITOR " fmt, ##args); \
-	} \
-    } while (0)
-
-
-#define THRML_ERROR_LOG(fmt, args...) \
-    do { \
-	pr_debug("THERMAL/MONITOR " fmt, ##args); \
-    } while (0)
+#define THRML_LOG(fmt, args...) 
+#define THRML_ERROR_LOG(fmt, args...)
 
 /* ************************************ */
 /* Define */

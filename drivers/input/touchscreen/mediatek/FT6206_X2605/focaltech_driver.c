@@ -48,11 +48,11 @@
 
 #ifdef TPD_PROXIMITY
 
-#define APS_ERR(fmt,arg...)           	printk("<<proximity>> "fmt"\n",##arg)
+#define APS_ERR(fmt,arg...)           	//printk("<<proximity>> "fmt"\n",##arg)
 
-#define TPD_PROXIMITY_DEBUG(fmt,arg...) printk("<<proximity>> "fmt"\n",##arg)
+#define TPD_PROXIMITY_DEBUG(fmt,arg...) //printk("<<proximity>> "fmt"\n",##arg)
 
-#define TPD_PROXIMITY_DMESG(fmt,arg...) printk("<<proximity>> "fmt"\n",##arg)
+#define TPD_PROXIMITY_DMESG(fmt,arg...) //printk("<<proximity>> "fmt"\n",##arg)
 
 static u8 tpd_proximity_flag 			= 0;
 
@@ -280,7 +280,7 @@ static long tpd_unlocked_ioctl(struct file *file, unsigned int cmd,
 
 	if(err)
 	{
-		printk("tpd: access error: %08X, (%2d, %2d)\n", cmd, _IOC_DIR(cmd), _IOC_SIZE(cmd));
+		//printk("tpd: access error: %08X, (%2d, %2d)\n", cmd, _IOC_DIR(cmd), _IOC_SIZE(cmd));
 		return -EFAULT;
 	}
 
@@ -318,7 +318,7 @@ static long tpd_unlocked_ioctl(struct file *file, unsigned int cmd,
 
 
 		default:
-			printk("tpd: unknown IOCTL: 0x%08x\n", cmd);
+			//printk("tpd: unknown IOCTL: 0x%08x\n", cmd);
 			err = -ENOIOCTLCMD;
 			break;
 			
@@ -359,14 +359,14 @@ void tpd_usb_plugin(int plugin)
 		return;
 
 
-	printk("Fts usb detect: %s %d %d.\n",__func__,b_usb_plugin,tpd_halt);
+	//printk("Fts usb detect: %s %d %d.\n",__func__,b_usb_plugin,tpd_halt);
 
 	if ( tpd_halt ) return;
 	
 		ret = i2c_smbus_write_i2c_block_data(i2c_client, 0x8B, 1, &b_usb_plugin);
 		if ( ret < 0 )
 		{
-			printk("Fts usb detect write err: %s %d.\n",__func__,b_usb_plugin);
+			//printk("Fts usb detect write err: %s %d.\n",__func__,b_usb_plugin);
 		}
 	
 }
@@ -728,7 +728,7 @@ void focaltech_get_upgrade_array(void)
 	i2c_smbus_read_i2c_block_data(i2c_client,FTS_REG_CHIP_ID,1,&chip_id);
 	chip_id = 0x36;
 
-	printk("%s chip_id = %x\n", __func__, chip_id);
+	//printk("%s chip_id = %x\n", __func__, chip_id);
 
 	for(i=0;i<sizeof(fts_updateinfo)/sizeof(struct Upgrade_Info);i++)
 	{
@@ -825,7 +825,7 @@ static int tpd_touchinfo(struct touch_info *cinfo, struct touch_info *pinfo)
 		cinfo->y[i] = high_byte |low_byte;
 	}
 
-	printk(" MIKE: tpd cinfo->x[0] = %d, cinfo->y[0] = %d, cinfo->p[0] = %d\n", cinfo->x[0], cinfo->y[0], cinfo->p[0]);
+	//printk(" MIKE: tpd cinfo->x[0] = %d, cinfo->y[0] = %d, cinfo->p[0] = %d\n", cinfo->x[0], cinfo->y[0], cinfo->p[0]);
 	return true;
 
 };
@@ -936,7 +936,7 @@ static int tpd_enable_ps(int enable)
 	int ret = -1;
 	
 	i2c_smbus_read_i2c_block_data(i2c_client, 0xB0, 1, &state);
-	printk("[proxi_fts]read: 999 0xb0's value is 0x%02X\n", state);
+	//printk("[proxi_fts]read: 999 0xb0's value is 0x%02X\n", state);
 
 	if (enable){
 		state |= 0x01;
@@ -1033,7 +1033,7 @@ int tpd_ps_operate(void* self, uint32_t command, void* buff_in, int size_in,
 #ifdef FTS_GESTRUE
 static void check_gesture(int gesture_id)
 {
-    printk("fts gesture_id==0x%x\n ",gesture_id);
+    //printk("fts gesture_id==0x%x\n ",gesture_id);
 	switch(gesture_id)
 	{
 		case GESTURE_LEFT:
@@ -1133,7 +1133,7 @@ static int fts_read_Gestruedata(void)
 	//printk( "tpd read FTS_GESTRUE_POINTS_HEADER.\n");
     if (ret < 0)
     {
-        printk( "%s read touchdata failed.\n", __func__);
+        //printk( "%s read touchdata failed.\n", __func__);
         return ret;
     }
 
@@ -1155,7 +1155,7 @@ static int fts_read_Gestruedata(void)
 	 	 }
 	 	 if (ret < 0)
 	 	 {
-	 	       printk( "%s read touchdata failed.\n", __func__);
+	 	       //printk( "%s read touchdata failed.\n", __func__);
 	 	       return ret;
 	 	 }
         	 check_gesture(gestrue_id);
@@ -1174,7 +1174,7 @@ static int fts_read_Gestruedata(void)
     {
         gestrue_id = 0x24;
         check_gesture(gestrue_id);
-		printk( "tpd %d check_gesture gestrue_id.\n", gestrue_id);
+		//printk( "tpd %d check_gesture gestrue_id.\n", gestrue_id);
         return -1;
     }
 	
@@ -1191,13 +1191,13 @@ static int fts_read_Gestruedata(void)
     }
     if (ret < 0)
     {
-        printk( "%s read touchdata failed.\n", __func__);
+        //printk( "%s read touchdata failed.\n", __func__);
         return ret;
     }
 
    gestrue_id = fetch_object_sample(buf, pointnum);
    check_gesture(gestrue_id);
-   printk( "tpd %d read gestrue_id.\n", gestrue_id);
+   //printk( "tpd %d read gestrue_id.\n", gestrue_id);
 
     for(i = 0;i < pointnum;i++)
     {
@@ -1228,11 +1228,11 @@ static int fts_read_Gestruedata(void)
 	u8 state;
 	 do
 	 {
-		printk("MIKE: tpd touch_event_handler start !kthread_should_stop() = %d\n", !kthread_should_stop());
+		//printk("MIKE: tpd touch_event_handler start !kthread_should_stop() = %d\n", !kthread_should_stop());
 		 mt_eint_unmask(CUST_EINT_TOUCH_PANEL_NUM); 
 		 set_current_state(TASK_INTERRUPTIBLE); 
 		 wait_event_interruptible(waiter, tpd_flag != 0);
-		printk("MIKE: tpd touch_event_handler step 2\n");				 
+		//printk("MIKE: tpd touch_event_handler step 2\n");				 
 		 tpd_flag = 0;
 			 
 		 set_current_state(TASK_RUNNING);
@@ -1286,7 +1286,7 @@ static int fts_read_Gestruedata(void)
 		#endif
               
 
-		printk("MIKE: tpd touch_event_handler step 3\n");
+		//printk("MIKE: tpd touch_event_handler step 3\n");
 
               
 		#ifdef MT_PROTOCOL_B
@@ -1301,7 +1301,7 @@ static int fts_read_Gestruedata(void)
 		{
 			if (tpd_touchinfo(&cinfo, &pinfo)) 
 			{
-			    	printk("MIKE: tpd point_num = %d step 3\n",point_num);
+			    	//printk("MIKE: tpd point_num = %d step 3\n",point_num);
 				TPD_DEBUG_SET_TIME;
 				if(point_num >0) 
 				{
@@ -1348,7 +1348,7 @@ void fts_reset_tp(int HighOrLow)
 	 //TPD_DEBUG_PRINT_INT;
 	 tpd_flag = 1;
 	 wake_up_interruptible(&waiter);
- 	 printk("MIKE:TPD interrupt has been triggered flag = %d\n", tpd_flag);
+ 	 //printk("MIKE:TPD interrupt has been triggered flag = %d\n", tpd_flag);
  }
 
  static int fts_init_gpio_hw(void)
@@ -1380,7 +1380,7 @@ void fts_reset_tp(int HighOrLow)
 reset_proc:   
 	i2c_client = client;
 
-	printk("%s: start\n", __func__);
+	//printk("%s: start\n", __func__);
    
 	//power on, need confirm with SA
 #ifdef TPD_POWER_SOURCE_CUSTOM
@@ -1404,7 +1404,7 @@ reset_proc:
 	mt_set_gpio_out(GPIO_CTP_RST_PIN, GPIO_OUT_ZERO);  
 	msleep(1);
 	TPD_DMESG(" fts reset\n");
-	printk(" fts reset\n");
+	//printk(" fts reset\n");
 	mt_set_gpio_mode(GPIO_CTP_RST_PIN, GPIO_CTP_RST_PIN_M_GPIO);
 	mt_set_gpio_dir(GPIO_CTP_RST_PIN, GPIO_DIR_OUT);
 	mt_set_gpio_out(GPIO_CTP_RST_PIN, GPIO_OUT_ONE);
@@ -1434,21 +1434,21 @@ reset_proc:
 	uc_reg_addr = FTS_REG_POINT_RATE;				
 	fts_i2c_Write(i2c_client, &uc_reg_addr, 1);
 	fts_i2c_Read(i2c_client, &uc_reg_addr, 0, &uc_reg_value, 1);
-	printk("MIKE: mtk_tpd[FTS] report rate is %dHz.\n",uc_reg_value * 10);
+	//printk("MIKE: mtk_tpd[FTS] report rate is %dHz.\n",uc_reg_value * 10);
 
 	uc_reg_addr = FTS_REG_FW_VER;
 	fts_i2c_Write(i2c_client, &uc_reg_addr, 1);
 	fts_i2c_Read(i2c_client, &uc_reg_addr, 0, &uc_reg_value, 1);
-	printk("mtk_tpd[FTS] Firmware version = 0x%x\n", uc_reg_value);
+	//printk("mtk_tpd[FTS] Firmware version = 0x%x\n", uc_reg_value);
 
 
 	uc_reg_addr = FTS_REG_CHIP_ID;
 	fts_i2c_Write(i2c_client, &uc_reg_addr, 1);
 	retval=fts_i2c_Read(i2c_client, &uc_reg_addr, 0, &uc_reg_value, 1);
-	printk("mtk_tpd[FTS] chip id is %d.\n",uc_reg_value);
+	//printk("mtk_tpd[FTS] chip id is %d.\n",uc_reg_value);
     	if(retval<0)
 	{
-        	printk("mtk_tpd[FTS] Read I2C error! driver NOt load!! CTP chip id is %d.\n",uc_reg_value);
+        	//printk("mtk_tpd[FTS] Read I2C error! driver NOt load!! CTP chip id is %d.\n",uc_reg_value);
 		msg_dma_release();
 		return -1;
 	}
@@ -1467,7 +1467,7 @@ reset_proc:
     #ifdef VELOCITY_CUSTOM_fts
 	if((err = misc_register(&tpd_misc_device)))
 	{
-		printk("mtk_tpd: tpd_misc_device register failed\n");
+		//printk("mtk_tpd: tpd_misc_device register failed\n");
 		
 	}
 	#endif
@@ -1495,7 +1495,7 @@ reset_proc:
 #endif
 
 #ifdef TPD_AUTO_UPGRADE
-	printk("********************Enter CTP Auto Upgrade********************\n");
+	//printk("********************Enter CTP Auto Upgrade********************\n");
 	fts_ctpm_auto_upgrade(i2c_client);
 #endif
 
@@ -1551,16 +1551,16 @@ reset_proc:
 	input_set_abs_params(tpd->dev, ABS_MT_PRESSURE, 0, 255, 0, 0);
 #endif
 	
-	printk("MIKE: fts Touch Panel Device Probe %s\n", (retval < TPD_OK) ? "FAIL" : "PASS");
+	//printk("MIKE: fts Touch Panel Device Probe %s\n", (retval < TPD_OK) ? "FAIL" : "PASS");
 	ft5336_class = class_create(THIS_MODULE, "syna");
 	err = class_create_file(ft5336_class, &class_attr_gesenable);
 	if (err) {
-		printk("ft5336 gensenable create sys interface ERROR\n");
+		//printk("ft5336 gensenable create sys interface ERROR\n");
 	}
 	#ifdef RGK_TP_GESTURE_ORBIT
 	err = class_create_file(ft5336_class, &class_attr_orbit_enable);
 	if (err) {
-		printk("tp gesture orbit interface ERROR\n");
+		//printk("tp gesture orbit interface ERROR\n");
 	}
 	#endif
 
@@ -1751,7 +1751,7 @@ static struct tpd_driver_t tpd_device_driver = {
 /* called when loaded into kernel */
 static int __init tpd_driver_init(void)
 {
-	printk("MediaTek fts touch panel driver init\n");
+	TPD_DMESG("MediaTek fts touch panel driver init\n");
 	i2c_register_board_info(IIC_PORT, &fts_i2c_tpd, 1);
 	if(tpd_driver_add(&tpd_device_driver) < 0)
 		TPD_DMESG("add fts driver failed\n");

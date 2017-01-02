@@ -14,21 +14,21 @@ then
 fi
 
 echo "Export toolchains..."
-export ARCH=arm64 CROSS_COMPILE=../linaro-5.3.1_arm64/bin/aarch64-linux-gnu-
+export ARCH=arm64 && export CROSS_COMPILE=$(tools/auto/toolchain.sh ..)
 
 echo "Make defconfig..."
 make s450m_4g_64_defconfig >/dev/null
 
 echo "Start build..."
-make -j4 >/dev/null 2>errors_3.10_64.log
+make -j4 >/dev/null 2>errors_64.log
 
 if [ ! -f arch/arm64/boot/Image.gz-dtb ]
 then
     echo "BUILD ERRORS!"
-    echo "$(cat errors_3.10_64.log | grep error 2>/dev/null)"
+    echo "$(cat errors_64.log | grep error 2>/dev/null)"
 else
-    echo "Moving..."
-    mv arch/arm64/boot/Image.gz-dtb boot_3.10_64.img-kernel
+    echo "Creating update zip..."
+    tools/auto/auto.sh boot recovery
     echo "Finish! Build time: $((($(date +%s) - run)/60)) min."
 fi
 
