@@ -155,8 +155,8 @@ u32 pinSet[3][8] = {
                         GPIO_OUT_ZERO,
                         CAMERA_CMPDN1_PIN,
                         CAMERA_CMPDN1_PIN_M_GPIO,
+			GPIO_OUT_ZERO,
                         GPIO_OUT_ONE,
-                        GPIO_OUT_ZERO,
                      },
                      //for main_2 sensor
                      {  GPIO_CAMERA_INVALID,

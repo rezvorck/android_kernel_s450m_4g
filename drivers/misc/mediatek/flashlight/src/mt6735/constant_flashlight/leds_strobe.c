@@ -109,12 +109,11 @@ extern void sgm3785_FL_Enable(int duty);
 //#define GPIO_CAMERA_FLASH_MODE_PIN GPIO43
 int FL_Enable(void)
 {
-
-#define FLASH_GPIO (80)
+//#define FLASH_GPIO (80)
 mt_led_blink_pmic(1, &nled_tmp_setting);
-mt_set_gpio_mode(FLASH_GPIO, 0);
-mt_set_gpio_dir(FLASH_GPIO, GPIO_DIR_OUT);
-mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ONE);
+//mt_set_gpio_mode(FLASH_GPIO, 0);
+//mt_set_gpio_dir(FLASH_GPIO, GPIO_DIR_OUT);
+//mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ONE);
 /*
 #if defined(GPIO_CAMERA_FLASH_EN_PIN)
 	if(mt_set_gpio_mode(GPIO_CAMERA_FLASH_EN_PIN,GPIO_MODE_00)){PK_DBG("[constant_flashlight] set enf gpio mode failed!! \n");}
@@ -145,7 +144,7 @@ mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ONE);
 int FL_Disable(void)
 {
 mt_brightness_set_pmic(1, 0, 0);
-mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ZERO);
+//mt_set_gpio_out(FLASH_GPIO, GPIO_OUT_ZERO);
 /*
 #if defined(CONFIG_HCT_LED_SGM3785)
 	sgm3785_FL_Disable();

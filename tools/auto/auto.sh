@@ -17,6 +17,6 @@ esac
 [ -f "$(dirname $0)/recovery.img" ] && mv $(dirname $0)/recovery.img $(dirname $0)/update-zip/recovery.img && echo 'package_extract_file("recovery.img", "/dev/block/platform/mtk-msdc.0/by-name/recovery");' >> $(dirname $0)/update-zip/META-INF/com/google/android/updater-script
 
 cd $(dirname $0)/update-zip
-zip -r $dir/update.zip .
+zip -r $dir/update.zip . 1>/dev/null
 rm -f *.img
 rm -f META-INF/com/google/android/updater-script

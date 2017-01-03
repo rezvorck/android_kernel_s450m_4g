@@ -60,10 +60,10 @@ fi
 [[ -f $dir/$1.img-dt ]] && ldtb=$dir/$1.img-dt && dtb=" --dt $ldtb"
 
 if [[ -f $dir/$1.img-mtk ]]; then
-	$mkbootimg --kernel "$kernel" --ramdisk "$ramdisk" --pagesize "$pagesize" --cmdline "$lcmd" --board "$bname" --base "$base" --kernel_offset "$keoff" --ramdisk_offset "$ramoff" --tags_offset "$tagoff"$losec$second$dtb --mtk 1 -o $(dirname $0)/$1.img
+	$mkbootimg --kernel "$kernel" --ramdisk "$ramdisk" --pagesize "$pagesize" --cmdline "$lcmd" --board "$bname" --base "$base" --kernel_offset "$keoff" --ramdisk_offset "$ramoff" --tags_offset "$tagoff"$losec$second$dtb --mtk 1 -o $(dirname $0)/$1.img 1>/dev/null
 	[ ! $? -eq "0" ] && exit 1
 else
-	$mkbootimg --kernel "$kernel" --ramdisk "$ramdisk" --pagesize "$pagesize" --cmdline "$lcmd" --board "$bname" --base "$base" --kernel_offset "$keoff" --ramdisk_offset "$ramoff" --tags_offset "$tagoff"$losec$second$dtb -o $(dirname $0)/$1.img
+	$mkbootimg --kernel "$kernel" --ramdisk "$ramdisk" --pagesize "$pagesize" --cmdline "$lcmd" --board "$bname" --base "$base" --kernel_offset "$keoff" --ramdisk_offset "$ramoff" --tags_offset "$tagoff"$losec$second$dtb -o $(dirname $0)/$1.img 1>/dev/null
 	[ ! $? -eq "0" ] && exit 1
 fi
 
